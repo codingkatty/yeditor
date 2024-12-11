@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yeditor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; display: flex; height: 100vh; flex-direction: column; }
+        .toolbar {
+            padding: 1rem;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        .toolbar button {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        #editor-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        #editor, #preview {
+            width: 50%;
+            padding: 1rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+        #editor {
+            border-right: 1px solid #ccc;
+        }
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            font-family: monospace;
+            font-size: 1rem;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+        }
+        #preview {
+            outline: none;
+        }
+        #preview:focus {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <button id="saveAsPdf">Save as PDF</button>
+        <button id="generateAi">Generate AI</button>
+        <span style="margin-left: auto;">Drop images anywhere to upload</span>
+    </div>
+    <div id="editor-container">
+        <div id="editor">
+            <textarea id="markdown" placeholder="Enter your markdown here..."># Hello World
+This is a **Markdown** preview.</textarea>
+        </div>
+        <div id="preview" contenteditable="true"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
