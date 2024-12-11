@@ -41,7 +41,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         }
 
         console.log('Uploaded File Path:', data.path);
-        const fileUrl = `${supabaseUrl}/storage/v1/object/public/images/${fileName}${path.extname(req.file.originalname)}`;
+        const fileUrl = `${supabaseUrl}/storage/v1/object/public/images/${fileName}`;
         console.log('URL:', fileUrl);
 
         res.status(200).json({ url: fileUrl });
