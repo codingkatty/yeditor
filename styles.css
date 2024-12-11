@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root {
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #252526;
+    --text-primary: #d4d4d4;
+    --text-secondary: #808080;
+    --accent: #56bbe0;
+    --border: #404040;
+    --editor-bg: #1e1e1e;
+    --preview-bg: #252526;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.toolbar {
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toolbar button {
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.toolbar button:hover {
+    background: var(--accent);
+    color: white;
+}
+
+#editor-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#editor,
+#preview {
+    width: 50%;
+    padding: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#editor {
+    background: var(--editor-bg);
+    border-right: 1px solid var(--border);
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+}
+
+#preview {
+    background: var(--preview-bg);
+    color: var(--text-primary);
+    outline: none;
+    line-height: 1.6;
+}
+
+#preview h1,
+#preview h2,
+#preview h3,
+#preview h4,
+#preview h5,
+#preview h6 {
+    margin: 1.5rem 0 1rem;
+    color: var(--accent);
+}
+
+#preview h1 {
+    font-size: 2em;
+}
+
+#preview h2 {
+    font-size: 1.5em;
+}
+
+#preview h3 {
+    font-size: 1.17em;
+}
+
+#preview p {
+    margin: 1rem 0;
+}
+
+#preview ul,
+#preview ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+#preview li {
+    margin: 0.5rem 0;
+}
+
+#preview blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#preview code {
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+#preview pre {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+#preview pre code {
+    background: transparent;
+    padding: 0;
+}
+
+#preview img {
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+#preview a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+#preview a:hover {
+    text-decoration: underline;
+}
+
+#preview hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--border);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}

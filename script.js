@@ -49,7 +49,9 @@ generateAiBtn.addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ prompt: markdownContent })
+            body: JSON.stringify({ 
+                prompt: `Rewrite the following markdown to improve its quality and clarity, and only return the markdown content:\n\n${markdownContent}` 
+            })
         });
 
         if (!response.ok) {
@@ -119,4 +121,56 @@ window.addEventListener('beforeunload', (e) => {
     const confirmationMessage = 'You have unsaved changes. Are you sure you want to leave?';
     e.returnValue = confirmationMessage;
     return confirmationMessage;
+});
+
+const saveAsMdBtn = document.getElementById('saveAsMd');
+saveAsMdBtn.addEventListener('click', () => {
+    const content = markdownInput.value;
+    const blob = new Blob([content], { type: 'text/markdown' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'document.md';
+    a.click();
+    window.URL.revokeObjectURL(url);
+});
+
+const copyBtn = document.getElementById('copy');
+copyBtn.addEventListener('click', async () => {
+    try {
+        await navigator.clipboard.writeText(markdownInput.value);
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy:', err);
+    }
+});
+
+document.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    
+    for (const file of files) {
+        if (file.type === 'text/markdown' || file.name.endsWith('.md')) {
+            try {
+                const text = await file.text();
+                markdownInput.value = text;
+                updatePreview();
+            } catch (error) {
+                console.error('Error reading markdown file:', error);
+                alert('Failed to read markdown file.');
+            }
+        }
+    }
+});
+
+marked.setOptions({
+    gfm: true,
+    breaks: true,
+    highlight: function(code) {
+        return code;
+    }
 });
