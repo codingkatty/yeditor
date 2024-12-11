@@ -57,7 +57,7 @@ generateAiBtn.addEventListener('click', async () => {
         }
 
         const data = await response.json();
-        if (data.generatedMarkdown) {
+        if (data.response) {
             markdownInput.value += `\n\n${data.response}`;
             updatePreview();
         } else {
