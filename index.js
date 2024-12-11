@@ -48,6 +48,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
             throw publicUrlError;
         }
 
+        console.log('Image uploaded:', publicURL);
+
         res.status(200).json({ url: publicURL });
     } catch (error) {
         console.error('Error uploading image:', error.message);

@@ -62,6 +62,7 @@ generateAiBtn.addEventListener('click', async () => {
             updatePreview();
         } else {
             alert('AI response does not contain generated Markdown.');
+            console.log(data.response)
         }
     } catch (error) {
         console.error('Error generating AI content:', error);
