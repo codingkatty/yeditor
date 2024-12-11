@@ -49,7 +49,7 @@ generateAiBtn.addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ markdown: markdownContent })
+            body: JSON.stringify({ prompt: markdownContent })
         });
 
         if (!response.ok) {
@@ -58,7 +58,7 @@ generateAiBtn.addEventListener('click', async () => {
 
         const data = await response.json();
         if (data.generatedMarkdown) {
-            markdownInput.value += `\n\n${data.generatedMarkdown}`;
+            markdownInput.value += `\n\n${data.response}`;
             updatePreview();
         } else {
             alert('AI response does not contain generated Markdown.');
@@ -95,13 +95,13 @@ document.addEventListener('drop', async (e) => {
                 const data = await response.json();
                 if (data.url) {
                     const imageMarkdown = `![${file.name}](${data.url})`;
-                    
+
                     const cursorPos = markdownInput.selectionStart;
                     const textBefore = markdownInput.value.substring(0, cursorPos);
                     const textAfter  = markdownInput.value.substring(cursorPos);
                     markdownInput.value = textBefore + imageMarkdown + textAfter;
-                    
-                    preview.innerHTML = marked.parse(markdownInput.value);
+
+                    updatePreview();
                 } else {
                     alert('Server did not return image URL.');
                 }
