@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yeditor</title>
     <link rel="stylesheet" href="styles.css">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.js"></script>
@@ -20,8 +20,24 @@
     </div>
     <div id="editor-container">
         <div id="editor">
-            <textarea id="markdown" placeholder="Enter your markdown here..."># Hello World
-This is a **Markdown** preview.</textarea>
+            <textarea id="markdown" placeholder="Enter your markdown here..."># Hello World!
+---
+Welcome to Yeditor! Its a Markdown editor made by [@codingkatty](https://github.com/codingkatty).
+
+You can do many things here! It's the same as normal markdown syntax. Well, here's also a list of main *(cool)* features we have:
+
+- **Drag and drop image (and markdown)**
+When you drag and drop an image, it will be hosted and shown here.
+- **AI Edits**
+By clicking generate AI, AI will edit your markdown. Note that this is still in progress, so it might not function very well.
+- **Save Markdown**
+Save it as a PDF or Markdown file.
+---
+## Image Example
+![mycover (8).png](https://msfutgjgflgkckxreksp.supabase.co/storage/v1/object/public/images/1733920158766-mycover%20(8).png)
+
+---
+Lim Xin Ying 2024</textarea>
         </div>
         <div id="preview" contenteditable="true"></div>
     </div>
