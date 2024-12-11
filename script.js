@@ -95,7 +95,8 @@ document.addEventListener('drop', async (e) => {
 
                 const data = await response.json();
                 if (data.url) {
-                    const imageMarkdown = `![${file.name}](${data.url})`;
+                    const encodedUrl = encodeURI(data.url);
+                    const imageMarkdown = `![${file.name}](${encodedUrl})`;
 
                     const cursorPos = markdownInput.selectionStart;
                     const textBefore = markdownInput.value.substring(0, cursorPos);
