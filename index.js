@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const { createClient } = require('@supabase/supabase-js');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -39,18 +40,11 @@ app.post('/upload', upload.single('image'), async (req, res) => {
             throw error;
         }
 
-        const { publicURL, error: publicUrlError } = supabase
-            .storage
-            .from('images')
-            .getPublicUrl(data.path);
+        console.log('Uploaded File Path:', data.path);
+        const fileUrl = `${supabaseUrl}/storage/v1/object/public/images/${fileName}${path.extname(req.file.originalname)}`;
+        console.log('URL:', fileUrl);
 
-        if (publicUrlError) {
-            throw publicUrlError;
-        }
-
-        console.log('Image uploaded:', publicURL);
-
-        res.status(200).json({ url: publicURL });
+        res.status(200).json({ url: fileUrl });
     } catch (error) {
         console.error('Error uploading image:', error.message);
         res.status(500).json({ error: 'Failed to upload image.' });
